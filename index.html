@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yggdrasil Games</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>Yggdrasil Games</h1>
+    <p class="subtitle">The tiniest of indie game studios... in all the realms...</p>
+  </header>
+
+  <main>
+    <section class="game-card">
+      <!-- <img src="assets/images/pawcalypse-banner.jpg" alt="Pawcalypse Meow Banner" /> -->
+      <div class="placeholder-banner">
+        <span>Apawcalypse Meow Banner</span>
+      </div>
+      <div class="game-info">
+        <h2>Apawcalypse Meow</h2>
+        <p>Rescue as many cats as you can before the zombies get you. <br>Your flashlight is your best friend, but it won't last forever!</p>
+        <a href="games/zombiecatgame.html" class="play-button">Play Now</a>
+        <p class="mt-4 text-sm text-gray-700">
+            Explore a haunted forest, rescue lost cats, and avoid lurking zombies! Use the compass rose to navigate and make sure to pick up flashlights as they might help you stay safe for a little bit longer.
+          </p>
+          <div class="mt-6">
+            <h3 class="text-md font-semibold mb-2">Screenshots</h3>
+            <div class="image-grid">
+              <img src="assets/images/screenshot1.jpg" alt="Screenshot 1" class="thumbnail cursor-pointer" onclick="openModal('assets/images/screenshot1.jpg')">
+              <img src="assets/images/screenshot2.jpg" alt="Screenshot 2" class="thumbnail cursor-pointer" onclick="openModal('assets/images/screenshot2.jpg')">
+              <img src="assets/images/screenshot3.jpg" alt="Screenshot 3" class="thumbnail cursor-pointer" onclick="openModal('assets/images/screenshot3.jpg')">
+              <img src="assets/images/screenshot4.jpg" alt="Screenshot 4" class="thumbnail cursor-pointer" onclick="openModal('assets/images/screenshot4.jpg')">
+            </div>
+          </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Yggdrasil Games. All rights reserved.</p>
+  </footer>
+
+  <div id="imageModal" onclick="closeModal()">
+    <img id="modalImg" src="" alt="Screenshot Preview">
+  </div>
+  
+  <script>
+    function openModal(src) {
+      const modal = document.getElementById('imageModal');
+      const modalImg = document.getElementById('modalImg');
+      modalImg.src = src;
+      modal.style.display = 'flex';
+    }
+  
+    function closeModal() {
+      document.getElementById('imageModal').style.display = 'none';
+    }
+  </script>
+  
+  <script src="script.js"></script>
+</body>
+</html>

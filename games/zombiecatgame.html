@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Apawcalypse Meow</title>
+  <link rel="stylesheet" href="zombiecatstyles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="game-wrapper">
+    <h1 id="game-title">Apawcalypse Meow</h1>
+    <div id="room">
+      <div id="zombie-encounter" class="hidden">
+        <img id="zombie-image" src=""/>
+      </div>
+      <div id="cat-encounter" class="hidden">
+        <img id="cat-image" src=""/>
+      </div>
+      <div id="storyBox">
+        <p id="storyText">The adventure begins...</p>
+      </div>
+    </div>
+    <div id="controls">
+      <button id="exit-game"><a href="../index.html">❌</a></button>
+      <button id="toggle-music">🎵</button>
+      <button id="toggle-ambient">🌲</button>
+      <button id="toggle-sfx">🦖</button>
+    </div>
+  </div>
+
+  <div id="bottom">
+    <div id="grid"></div>
+    <div id="info">
+      <!-- <div id="title">Pawcalypse Meow</div> -->
+      <div id="dpad">
+        <button id="north" onclick="movePlayer(0, -1)">N</button>
+        <div>
+          <button id="west" onclick="movePlayer(-1, 0)">W</button>
+          <button id="east" onclick="movePlayer(1, 0)">E</button>
+        </div>
+        <button id="south" onclick="movePlayer(0, 1)">S</button>
+      </div>
+      <div id="score"><span>Cats Saved:</span> <strong>0</strong></div>
+      <div id="battery">Battery: <strong></strong></div>
+    </div>
+  </div>
+  
+  <div id="gameOverScreen">
+    <div id="finalScore">Game Over! Cats Saved: 0</div>
+    <button onclick="startGame()">Play Again</button>
+  </div>
+  
+
+  <!-- Firebase SDK -->
+  <!-- This is the little bit of API that we got going for us this time around... I hope that is correct and will do... -->
+   
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+    import { getFirestore, collection, getDocs, addDoc, query, orderBy, limit, updateDoc, doc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAKA2yWWhW_tvxtmuYPEKEWrMtqi9P7eGo",
+      authDomain: "yggdrasil-games.firebaseapp.com",
+      projectId: "yggdrasil-games",
+      storageBucket: "yggdrasil-games.firebasestorage.app",
+      messagingSenderId: "677074154638",
+      appId: "1:677074154638:web:24d315d254d403889805df"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    window.firebaseDB = db;
+    window.firebaseModules = {
+      collection,
+      getDocs,
+      addDoc,
+      query,
+      orderBy,
+      limit,
+      updateDoc,
+      doc,
+      deleteDoc
+    };
+  </script>
+
+<audio id="bg-music" src="../assets/audio/ES_Shivers in the Shadows - Victor Lundberg.mp3" loop autoplay></audio>
+<audio id="ambient-sound" src="../assets/audio/ES_Crows, Song Thrush, Wings Flapping, Leaves Rustling, Deciduous Forest, Summer, Late Evening - Epidemic Sound.mp3" loop autoplay></audio>
+<audio id="zombie-attack" src="../assets/audio/zombieAttack.mp3"></audio>
+<audio id="forest-walk" src="../assets/audio/forestSteps2.wav"></audio>
+<audio id="cat-happy" src="../assets/audio/catHappy.mp3"></audio>
+
+<script src="textFrame.js"></script> 
+<script src="zombiecatscript.js"></script>
+</body>
+</html>

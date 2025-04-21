@@ -1,0 +1,332 @@
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #222;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  #room {
+    position: relative;
+    width: 800px;
+    height: 600px;
+    background-color: black;
+    border: 5px solid #444;
+    margin-top: 20px;
+    overflow: visible;
+    z-index: 80;
+    transition: background-image 0.6s ease-in-out, opacity 0.6s ease-in-out;
+  }
+  
+  .room-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+  }
+  
+  .overlay {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    top: 250px;
+    left: 350px;
+  }
+  
+  #catOverlay {
+    display: none;
+  }
+  
+  #zombieOverlay {
+    display: none;
+  }
+  
+  #bottom {
+    display: flex;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 800px;
+  }
+  
+  #grid {
+    display: grid;
+    grid-template-columns: repeat(10, 30px);
+    grid-template-rows: repeat(10, 30px);
+    gap: 2px;
+    margin-right: 20px;
+  }
+  
+  .cell {
+    width: 30px;
+    height: 30px;
+    background-color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    color: white;
+  }
+  
+  #info {
+    background-image: url('../assets/images/background_gameUI.png');
+    background-size: 96%;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    flex-grow: 1;
+    width: 100%;
+    position: relative;
+  }
+
+  #game-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 800px;
+    margin: 0 auto;
+    position: relative;
+  }
+  
+  #game-title {
+    font-family: 'Creepster', cursive;
+    font-size: clamp(108px, 10vw, 80px);
+    color: #33ff5f;
+    width: 800px;
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 0;
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
+  }
+  
+  #dpad {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  #dpad > div {
+    display: flex;
+    gap: 5px;
+  }
+  
+  #dpad button {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background-color: #ceb39485;
+    font-weight: bold;
+    color: black;
+    border: 2px solid #414141;
+    border-radius: 5px;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  #dpad button:hover {
+    background-color: #5a373785;
+  }
+
+  #north {
+    top: 36px;
+    left: 168px;
+    transform: translateX(-50%);
+  }
+  
+  #south {
+    top: 258px;
+    left: 168px;
+    transform: translateX(-50%);
+  }
+  
+  #west {
+    top: 164px;
+    left: 34px;
+    transform: translateY(-50%);
+  }
+  
+  #east {
+    top: 164px;
+    left: 260px;
+    transform: translateY(-50%);
+  }
+  
+  #score {
+    position: absolute;
+    top: 32px;
+    right: 32px;
+    font-size: 1.5em;
+    color: black;
+    background: #ceb39485;
+    padding: 4px 14px;
+    border: 2px solid #414141;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #000;
+  }
+  
+  #score strong {
+    color: black;
+    font-size: 1.6em;
+  }
+  
+  button {
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+  }
+
+  .fade-zombie {
+    animation: fadeOut 1s forwards;
+  }
+  
+  @keyframes fadeOut {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+
+  .cell.foggy {
+    background-color: rgba(0, 0, 0, 0.6);
+    color: transparent;
+  }
+
+  .game-over-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    font-family: sans-serif;
+    text-align: center;
+    padding: 2rem;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    z-index: 1000;
+  }
+
+  #battery {
+    position: absolute;
+    bottom: 20px;
+    right: 60px;
+    margin-top: 0.5rem;
+    font-weight: bold;
+    color: #9b6603;
+  }
+
+  #controls {
+    position: absolute;
+    top: 150px;
+    right: -60px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  #controls button {
+    padding: 8px;
+    border-radius: 10px;
+    background-color: #333;
+    color: white;
+    font-size: 20px;
+    border: none;
+    cursor: pointer;
+  }
+
+  #storyBox {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 720px;
+    height: 120px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: 3px solid #fff;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-y: auto;
+  }
+  
+  #storyText {
+    white-space: pre-wrap;
+    font-family: 'Georgia', serif;
+    padding: 0.75rem;
+    margin: 0;
+    line-height: 1.4;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+  }
+
+  #zombie-encounter {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#zombie-encounter img {
+  position: absolute;
+  bottom: 0;
+  max-height: none;
+  object-fit: contain;
+  transform: translateX(-10%) translateY(-10%) scale(1.2);
+}
+
+#cat-encounter {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#cat-encounter img {
+  position: absolute;
+  bottom: 0;
+  max-height: none;
+  object-fit: contain;
+  transform: translateY(20%) scale(0.4);
+}
+
+.hidden {
+  display: none;
+}
